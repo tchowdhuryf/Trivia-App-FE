@@ -1,0 +1,10 @@
+.page-template {
+  height: 100%;
+}
+
+.page-header {
+  margin-bottom: 8px;
+}
+.page-content {
+  padding: 8px 16px 8px 16px;
+}
