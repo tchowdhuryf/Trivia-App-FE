@@ -1,0 +1,7 @@
+.nav-menu {
+  display: flex;
+  gap: 16px;
+  font-size: 1.2rem;
+  margin: 0px;
+  padding: 0px;
+}
