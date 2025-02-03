@@ -1,0 +1,16 @@
+.category-select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.category-select {
+  padding: 0.4em;
+  font-size: 1rem;
+}
+
+.category-select-label {
+  font-weight: 700;
+  color: #eeeef0;
+  transition: color 0.3s ease-in-out;
+}
