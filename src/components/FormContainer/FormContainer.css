@@ -1,0 +1,48 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #3d3c3c;
+  }
+  
+  .form-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #eeeef0;
+    margin-bottom: 1rem;
+  }
+  
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    gap: 1rem;
+  }
+  
+  .form-submit-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #535bf2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .form-submit-button:hover {
+    background-color: #444bc5;
+  }
+  
+  .form-status-message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #eeeef0;
+  }
+  
