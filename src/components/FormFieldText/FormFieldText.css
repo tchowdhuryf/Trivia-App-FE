@@ -1,0 +1,50 @@
+.form-field-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-field-text-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #eeeef0;
+  transition: color 0.3s ease-in-out;
+}
+
+.form-field-text-input {
+  font-size: 1rem;
+  padding: 0.6em;
+  border: 1px solid #2e2d2d;
+  border-radius: 6px;
+  background-color: #eeeef0;
+  color: #2e2d2d;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-field-text-input:hover {
+  border-color: #444343;
+}
+
+.form-field-text-input:focus {
+  outline: none;
+  border-color: #1e1d1d;
+  box-shadow: 0 0 5px rgba(46, 45, 45, 0.5);
+}
+
+.form-field-text-input:disabled {
+  background-color: #e0e0e0;
+  border-color: #b0b0b0;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.form-field-text-input::placeholder {
+  color: #777;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.form-field-text-input.error {
+  border-color: #ff4d4d;
+  background-color: #ffe6e6;
+}
