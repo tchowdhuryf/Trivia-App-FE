@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import apiServices from "../../services/apiServices";
 import "./CategorySelect.css";
 
 /**
@@ -48,15 +49,23 @@ const CategorySelect: React.FC<CategorySelectProps> = ({
    * State to store the list of fetched categories.
    */
   const [categories, setCategories] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   /**
    * Fetches categories from the API when the component mounts.
    */
   useEffect(() => {
-    fetch("http://localhost:5000/api/trivia/categories")
-      .then((response) => response.json())
-      .then((data: string[]) => setCategories(data))
-      .catch((error) => console.error("Error fetching categories:", error));
+    const fetchCategories = async () => {
+      try {
+        const data = await apiServices.getAllCategories();
+        setCategories(data);
+      } catch (error) {
+        setError("Failed to load categories.");
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
   return (
@@ -80,6 +89,7 @@ const CategorySelect: React.FC<CategorySelectProps> = ({
           </option>
         ))}
       </select>
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
