@@ -1,7 +1,12 @@
-export default function DeleteQuestionPage() {
+import DeleteQuestionForm from "../../components/DeleteQuestionForm/DeleteQuestionForm";
+import "./DeleteQuestionPage.css";
+
+const DeleteQuestionPage: React.FC = () => {
   return (
-    <>
-      <h1>DeleteQuestionPage</h1>
-    </>
+    <div className="delete-question-page">
+      <DeleteQuestionForm />
+    </div>
   );
-}
+};
+
+export default DeleteQuestionPage;
