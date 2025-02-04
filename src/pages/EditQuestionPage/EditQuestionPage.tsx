@@ -1,7 +1,12 @@
-export default function EditQuestionPage() {
+import EditQuestionForm from "../../components/EditQuestionForm/EditQuestionForm";
+import "./EditQuestionPage.css";
+
+const EditQuestionPage: React.FC = () => {
   return (
-    <>
-      <h1>EditQuestionPage</h1>
-    </>
+    <div className="edit-question-page">
+      <EditQuestionForm />
+    </div>
   );
-}
+};
+
+export default EditQuestionPage;
