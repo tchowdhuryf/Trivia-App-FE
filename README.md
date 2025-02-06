@@ -4,7 +4,7 @@
 
 This project is a Trivia Game application built using React, TypeScript, and Vite.
 
-Users can answer trivia questions across various categories and track their scores. The app connects to a backend service that manages question data, user scores, and game sessions.
+Users can answer trivia questions across various categories and track their scores. Users can add their own question to a category, edit any question form a category and delete any question from a category. The app connects to a backend service that manages categories and question data.
 
 ## Technologies Used
 
