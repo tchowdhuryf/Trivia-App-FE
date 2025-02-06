@@ -1,0 +1,23 @@
+.trivia-question-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  height: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 32px;
+  background-color: #3d3c3c;
+  gap: 8px;
+}
+
+.trivia-question-heading {
+  font-weight: bold;
+  color: #eeeef0;
+  margin: 0;
+}
+
+.trivia-question-options {
+  width: 80%;
+}
+
