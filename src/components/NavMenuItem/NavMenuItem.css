@@ -4,7 +4,9 @@
 
 .nav-menu-item__link {
   text-decoration: none;
-  color: #eeeef0;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.3rem
 }
 
 a {
