@@ -10,67 +10,41 @@ import apiServices from "../../services/apiServices";
 // Styles import
 import "./FormFieldQuestionPreview.css";
 
-/**
- * Represents the structure of a question data object.
- */
 interface QuestionData {
-  /** The unique identifier of the question. */
   id: number;
-  /** The category to which the question belongs. */
   category: string;
-  /** The text of the question. */
   question: string;
-  /** A list of possible answer choices. */
   options: string[];
-  /** The correct answer to the question. */
   answer: string;
 }
 
-/**
- * Props for the `FormFieldQuestionPreview` component.
- */
 interface FormFieldQuestionPreviewProps {
-  /**
-   * The selected category of the question.
-   */
   category: string;
-  /**
-   * Callback function triggered when a question is selected.
-   * @param questionId - The ID of the selected question.
-   */
   onSelectQuestion: (questionId: number) => void;
 }
 
 /**
- * `FormFieldQuestionPreview` Component
+ * `FormFieldQuestionPreview` component that allows users to enter a question ID,
+ * retrieve question details from an API, and display the fetched question along with its answer options.
  *
- * This component allows users to enter a question ID, retrieve question details
- * from an API, and display the fetched question along with its answer options.
- *
- * @component
- * @example
- * ```tsx
- * <FormFieldQuestionPreview category="science" onSelectQuestion={(id) => console.log(id)} />
- * ```
+ * @param {FormFieldQuestionPreviewProps} props - The properties passed to the component.
+ * @returns {JSX.Element} The rendered `FormFieldQuestionPreview` component.
  */
 const FormFieldQuestionPreview: React.FC<FormFieldQuestionPreviewProps> = ({
   category,
   onSelectQuestion,
 }) => {
-  /** State to store the user-entered question ID. */
   const [questionId, setQuestionId] = useState<string>("");
-
-  /** State to hold the fetched question data. */
   const [questionData, setQuestionData] = useState<QuestionData | null>(null);
-
-  /** State to store error messages, if any. */
   const [error, setError] = useState<string>("");
 
   /**
    * Fetches question data based on the provided question ID and category.
    * If the fetch is successful, updates `questionData` state; otherwise, sets an error message.
+   *
+   * @throws Will display an error message if the API request fails.
    */
-  const handlePreview = async () => {
+  const handlePreview = async (): Promise<void> => {
     if (!questionId.trim() || !category.trim()) {
       setError("Please provide a valid category and question ID.");
       setQuestionData(null);

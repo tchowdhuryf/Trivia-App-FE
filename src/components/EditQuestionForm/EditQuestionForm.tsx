@@ -3,59 +3,31 @@ import { useState, ChangeEvent, FormEvent } from "react";
 
 // Component imports
 import CategorySelect from "../CategorySelect/CategorySelect";
-import QuestionFields from "../QuestionFields/QuestionFields";
 import FormContainer from "../FormContainer/FormContainer";
 import FormFieldQuestionPreview from "../FormFieldQuestionPreview/FormFieldQuestionPreview";
+import QuestionFields from "../QuestionFields/QuestionFields";
 
 // Service imports
 import apiServices from "../../services/apiServices";
 
-// Styles import
-import "./EditQuestionForm.css";
-
-/**
- * Represents the structure of form data for editing a trivia question.
- */
 interface EditQuestionFormData {
-  /** The category of the question being edited. */
   category: string;
-  /** The unique ID of the question to be edited. */
   questionId: number | null;
-  /** The text of the question. */
   question: string;
-  /** The first possible answer option. */
   option1: string;
-  /** The second possible answer option. */
   option2: string;
-  /** The third possible answer option. */
   option3: string;
-  /** The fourth possible answer option. */
   option4: string;
-  /** The correct answer for the question. */
   answer: string;
 }
 
 /**
- * `EditQuestionForm` Component
+ * `EditQuestionForm` component that renders a form for editing an existing trivia question.
+ * Users can select a category, choose a question to edit, modify the details, and submit the changes.
  *
- * This component renders a form for editing an existing trivia question.
- * Users can:
- * - Select a category
- * - Pick a question to edit
- * - Modify the question and answer options
- * - Submit the updated data to the API
- *
- * @component
- * @example
- * ```tsx
- * <EditQuestionForm />
- * ```
+ * @returns {JSX.Element} The rendered `EditQuestionForm` component.
  */
 const EditQuestionForm: React.FC = () => {
-  /**
-   * Manages the state of the form, storing the selected category, question ID,
-   * question text, answer options, and the correct answer.
-   */
   const [formData, setFormData] = useState<EditQuestionFormData>({
     category: "",
     questionId: null,
@@ -67,42 +39,34 @@ const EditQuestionForm: React.FC = () => {
     answer: "",
   });
 
-  /** The title displayed on the form. */
-  const title = "Edit Question";
-
-  /** The text displayed on the submit button. */
-  const buttonText = "Edit Question";
-
-  /**
-   * Stores the status message, which updates when a question is successfully edited or an error occurs.
-   */
   const [status, setStatus] = useState<string>("");
+
+  const title = "Edit Question";
+  const buttonText = "Edit Question";
 
   /**
    * Handles changes in input and select fields and updates the `formData` state accordingly.
    *
-   * @param event - The change event triggered by an input or select element.
+   * @param {ChangeEvent<HTMLInputElement | HTMLSelectElement>} event - The change event triggered by an input or select element.
    */
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   /**
    * Handles selection of a question and fetches its details to populate the form fields.
    *
-   * @param questionId - The ID of the selected question.
+   * @param {number} questionId - The ID of the selected question.
+   * @throws Will display an error message if the API request fails.
    */
-  const handleQuestionSelect = async (questionId: number) => {
+  const handleQuestionSelect = async (questionId: number): Promise<void> => {
     try {
-      // Fetch question details from the API
       const questionData = await apiServices.getQuestionById(
         formData.category,
         questionId
       );
-
-      // Populate form fields with retrieved data
       setFormData({
         category: formData.category,
         questionId: questionData.id,
@@ -114,7 +78,7 @@ const EditQuestionForm: React.FC = () => {
         answer: questionData.answer,
       });
 
-      setStatus(""); // Reset status message
+      setStatus("");
     } catch (error) {
       setStatus("Failed to load question. Please try again.");
       console.error("Error fetching question:", error);
@@ -124,18 +88,19 @@ const EditQuestionForm: React.FC = () => {
   /**
    * Handles form submission, validates input, and updates the selected question.
    *
-   * @param event - The form submission event.
+   * @param {FormEvent<HTMLFormElement>} event - The form submission event.
+   * @throws Will display an error message if the API request fails.
    */
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
-    // Validate that a category and question ID are selected
     if (!formData.category || formData.questionId === null) {
       setStatus("Please select a category and question to update.");
       return;
     }
 
-    // Prepare the updated question data
     const updatedData = {
       question: formData.question,
       options: [
@@ -148,7 +113,6 @@ const EditQuestionForm: React.FC = () => {
     };
 
     try {
-      // Send updated question data to the API
       await apiServices.updateQuestion(
         formData.category,
         formData.questionId,
@@ -174,12 +138,10 @@ const EditQuestionForm: React.FC = () => {
             onChange={handleChange}
             name="category"
           />
-
           <FormFieldQuestionPreview
             category={formData.category}
             onSelectQuestion={handleQuestionSelect}
           />
-
           <QuestionFields formData={formData} handleChange={handleChange} />
         </>
       }

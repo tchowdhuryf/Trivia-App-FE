@@ -1,32 +1,17 @@
-import React from "react";
+// Styles import
 import "./NavMenuItem.css";
 
-/**
- * Props for the `NavMenuItem` component.
- */
 export interface NavMenuItemProps {
-  /**
-   * The URL to navigate to when the menu item is clicked.
-   */
   href: string;
-
-  /**
-   * The text label displayed for the menu item.
-   */
   label: string;
 }
 
 /**
- * `NavMenuItem` Component
- *
- * This component represents a single navigation menu item.
+ * `NavMenuItem` component that represents a single navigation menu item.
  * It is typically used inside the `NavMenu` component.
  *
- * @component
- * @example
- * ```tsx
- * <NavMenuItem href="/home" label="Home" />
- * ```
+ * @param {NavMenuItemProps} props - The properties passed to the component.
+ * @returns {JSX.Element} The rendered `NavMenuItem` component.
  */
 const NavMenuItem: React.FC<NavMenuItemProps> = ({ href, label }) => {
   return (

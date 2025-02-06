@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import FormFieldQuestionPreview from "./FormFieldQuestionPreview";
 
-/**
- * Storybook configuration for `FormFieldQuestionPreview` component.
- */
 const meta: Meta<typeof FormFieldQuestionPreview> = {
   title: "Components/FormFieldQuestionPreview",
   component: FormFieldQuestionPreview,
@@ -27,10 +24,6 @@ export default meta;
 
 type Story = StoryObj<typeof FormFieldQuestionPreview>;
 
-/**
- * Default story for `FormFieldQuestionPreview`.
- * Renders the component with a sample category.
- */
 export const Default: Story = {
   args: {
     category: "sports",
