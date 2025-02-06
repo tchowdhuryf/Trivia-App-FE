@@ -20,18 +20,18 @@ Users can answer trivia questions across various categories and track their scor
 ### Frontend
 
 - The frontend is built using React with a modular component-based structure.
-- State management is handled using React hooks such as `useState` and `useContext`.
+- State management is handled using React hooks such as `useState`.
 - Trivia questions and game state are managed within React components.
 - The UI is styled using CSS and Storybook is used for UI component documentation.
-- The app communicates with a backend API to retrieve trivia questions and submit user scores.
+- The app communicates with a backend API to retrieve trivia questions.
 
 ### Backend
 
 - The frontend interacts with an Express-based backend that provides trivia questions and handles game state.
-- Trivia questions and user scores are stored in a MongoDB database.
-- API endpoints are exposed to fetch questions, track scores, and manage game sessions.
+- Trivia questions and categories are stored in a MongoDB database.
+- API endpoints are exposed to fetch, add, edit, and delete questions from categories.
 - The frontend makes `fetch` requests to these API endpoints using axios to keep the game data dynamic and up to date.
-- The backend ensures data validation and handles business logic for game progression.
+- The backend ensures data validation.
 
 #### Backend Repository
 
