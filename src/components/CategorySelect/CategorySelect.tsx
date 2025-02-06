@@ -1,61 +1,39 @@
+// React imports
 import { useEffect, useState } from "react";
+
+// Service imports
 import apiServices from "../../services/apiServices";
+
+// Styles import
 import "./CategorySelect.css";
 
-/**
- * Props for the `CategorySelect` component.
- */
 interface CategorySelectProps {
-  /**
-   * The currently selected category value.
-   */
   value: string;
-
-  /**
-   * Event handler triggered when the selected category changes.
-   *
-   * @param e - The change event for the select element.
-   */
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-
-  /**
-   * The name attribute for the select element.
-   */
   name: string;
 }
 
 /**
- * `CategorySelect` Component
+ * `CategorySelect` component that renders a dropdown menu for selecting a category.
+ * The list of categories is dynamically fetched from an API upon mounting.
  *
- * This component renders a dropdown menu for selecting a category.
- * The list of categories is **dynamically fetched** from an API upon mounting.
- *
- * @component
- * @example
- * ```tsx
- * <CategorySelect
- *   name="category"
- *   value={selectedCategory}
- *   onChange={(e) => setSelectedCategory(e.target.value)}
- * />
- * ```
+ * @returns {JSX.Element} The rendered `CategorySelect` component.
  */
 const CategorySelect: React.FC<CategorySelectProps> = ({
   value,
   onChange,
   name,
 }) => {
-  /**
-   * State to store the list of fetched categories.
-   */
   const [categories, setCategories] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   /**
    * Fetches categories from the API when the component mounts.
+   *
+   * @throws Will log an error and set an error message if the API request fails.
    */
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategories = async (): Promise<void> => {
       try {
         const data = await apiServices.getAllCategories();
         setCategories(data);

@@ -1,18 +1,14 @@
+// Component imports
 import AddQuestionForm from "../../components/AddQuestionForm/AddQuestionForm";
+
+// Styles import
 import "./AddQuestionPage.css";
 
 /**
- * `AddQuestionPage` Component
+ * `AddQuestionPage` component that renders the `AddQuestionForm`
+ * for creating a new trivia question.
  *
- * This component renders a page for adding a new trivia question.
- * It contains the `AddQuestionForm` component, which provides the actual form fields
- * and submission logic.
- *
- * @component
- * @example
- * ```tsx
- * <AddQuestionPage />
- * ```
+ * @returns {JSX.Element} The rendered `AddQuestionPage` component.
  */
 const AddQuestionPage: React.FC = () => {
   return (

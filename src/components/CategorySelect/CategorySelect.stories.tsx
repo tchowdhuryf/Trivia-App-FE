@@ -21,7 +21,7 @@ export const Default: Story = {
     value: "",
     name: "category",
   },
-  render: (args) => {
+  render: function RenderCategorySelect(args) {
     const [selectedCategory, setSelectedCategory] = useState(args.value);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

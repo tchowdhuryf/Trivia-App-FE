@@ -1,26 +1,18 @@
-import React, { ReactNode } from "react";
+// React imports
+import  { ReactNode } from "react";
+
+// Styles import
 import "./NavBar.css";
 
-/**
- * Props for the NavBar component.
- */
 interface NavBarProps {
-  /**
-   * Navigation menu component containing menu items.
-   */
   navMenu?: ReactNode;
 }
 
 /**
- * `NavBar` Component
+ * `NavBar` component that renders a navigation bar with an optional navigation menu.
  *
- * This component renders a navigation bar with a navigation menu.
- *
- * @component
- * @example
- * ```tsx
- * <NavBar navMenu={<NavMenu />} />
- * ```
+ * @param {NavBarProps} props - The properties passed to the component.
+ * @returns {JSX.Element} The rendered `NavBar` component.
  */
 const NavBar: React.FC<NavBarProps> = ({ navMenu }) => {
   return (

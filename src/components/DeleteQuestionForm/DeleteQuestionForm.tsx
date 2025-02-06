@@ -2,100 +2,75 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 
 // Component imports
-import FormContainer from "../FormContainer/FormContainer";
 import CategorySelect from "../CategorySelect/CategorySelect";
+import FormContainer from "../FormContainer/FormContainer";
 import FormFieldQuestionPreview from "../FormFieldQuestionPreview/FormFieldQuestionPreview";
 
 // Service imports
 import apiServices from "../../services/apiServices";
 
-// Styles import
-import "./DeleteQuestionForm.css";
-
-/**
- * Represents the form data structure for deleting a trivia question.
- */
 interface DeleteQuestionFormData {
-  /** The selected category for the question to be deleted. */
   category: string;
-  /** The unique ID of the question to be deleted. */
   questionId: number | null;
 }
 
 /**
- * `DeleteQuestionForm` Component
+ * `DeleteQuestionForm` component that provides a form for deleting a trivia question.
+ * Users can select a category, choose a specific question, and delete it via an API call.
  *
- * This component provides a form for deleting a trivia question.
- * It allows users to select a category and choose a specific question to delete.
- * Upon submission, the selected question is removed from the database via an API call.
- *
- * @component
- * @example
- * ```tsx
- * <DeleteQuestionForm />
- * ```
+ * @returns {JSX.Element} The rendered `DeleteQuestionForm` component.
  */
 const DeleteQuestionForm: React.FC = () => {
-  /**
-   * Manages the state of the form, storing the selected category and question ID.
-   */
   const [formData, setFormData] = useState<DeleteQuestionFormData>({
     category: "",
     questionId: null,
   });
 
-  /** The title displayed on the form. */
-  const title = "Delete Question";
-
-  /** The text displayed on the submit button. */
-  const buttonText = "Delete Question";
-
-  /**
-   * Stores the status message, which updates when a question is successfully deleted or an error occurs.
-   */
   const [status, setStatus] = useState<string>("");
+
+  const title = "Delete Question";
+  const buttonText = "Delete Question";
 
   /**
    * Handles changes in the category selection input and updates the state.
    *
-   * @param event - The change event triggered by the select or input element.
+   * @param {ChangeEvent<HTMLInputElement | HTMLSelectElement>} event - The change event triggered by the select or input element.
    */
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    setStatus(""); // Reset status message on category change
+    setStatus("");
   };
 
   /**
    * Handles selection of a question from the preview component.
    *
-   * @param questionId - The ID of the selected question.
+   * @param {number} questionId - The ID of the selected question.
    */
-  const handleQuestionSelect = (questionId: number) => {
+  const handleQuestionSelect = (questionId: number): void => {
     setFormData((prev) => ({ ...prev, questionId }));
   };
 
   /**
    * Handles form submission, validates input, and triggers the API call to delete the selected question.
    *
-   * @param event - The form submission event.
+   * @param {FormEvent<HTMLFormElement>} event - The form submission event.
+   * @throws Will display an error message if the API request fails.
    */
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
-    // Validate that a category and question ID are selected
     if (!formData.category || formData.questionId === null) {
       setStatus("Please select a category and question to delete.");
       return;
     }
 
     try {
-      // Call API to delete the question
       await apiServices.deleteQuestion(formData.category, formData.questionId);
       setStatus("Question deleted successfully!");
-
-      // Reset form fields after successful deletion
       setFormData({ category: "", questionId: null });
     } catch (error) {
       setStatus("Failed to delete question. Please try again.");
@@ -116,7 +91,6 @@ const DeleteQuestionForm: React.FC = () => {
             onChange={handleChange}
             name="category"
           />
-
           <FormFieldQuestionPreview
             category={formData.category}
             onSelectQuestion={handleQuestionSelect}

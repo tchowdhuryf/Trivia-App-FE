@@ -1,48 +1,18 @@
-import React from "react";
+// Styles import
 import "./FormFieldText.css";
 
-/**
- * Props for the FormFieldText component.
- */
 interface FormFieldTextProps {
-  /**
-   * The label for the input field.
-   */
   label: string;
-
-  /**
-   * The name attribute for the input field.
-   */
   name: string;
-
-  /**
-   * The current value of the input field.
-   */
   value: string;
-
-  /**
-   * Event handler for when the input value changes.
-   *
-   * @param e - The change event for the input field.
-   */
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
- * `FormFieldText` Component
+ * `FormFieldText` component that renders a labeled text input field.
  *
- * This component renders a labeled text input field.
- *
- * @component
- * @example
- * ```tsx
- * <FormFieldText
- *   label="Username"
- *   name="username"
- *   value={username}
- *   onChange={(e) => setUsername(e.target.value)}
- * />
- * ```
+ * @param {FormFieldTextProps} props - The properties passed to the component.
+ * @returns {JSX.Element} The rendered `FormFieldText` component.
  */
 const FormFieldText: React.FC<FormFieldTextProps> = ({
   label,
