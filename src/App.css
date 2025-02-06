@@ -1,6 +1,22 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.nav-menu-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 420px;
+}
+
+.nav-menu-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.nav-title {
+  flex: 1;
   text-align: center;
-} */
+  color: #eeeef0;
+  font-family: "Fredericka the Great", serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
