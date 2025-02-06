@@ -1,0 +1,11 @@
+.trivia-option-button {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease-in-out;
+}
