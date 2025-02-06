@@ -1,0 +1,44 @@
+.score-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  text-align: center;
+}
+
+.score-page__title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.score-page__text {
+  font-size: 1.5rem;
+}
+
+.score-page__score {
+  font-weight: bold;
+  color: green;
+}
+
+.score-page__total {
+  font-weight: bold;
+  color: blue;
+}
+
+.score-page__button {
+  width: 10%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #535bf2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.score-page__button:hover {
+  background-color: #444bc5;
+}
